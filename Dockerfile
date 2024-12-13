@@ -1,13 +1,17 @@
-# Use Python 3.9 as base image
-FROM python:3.9-slim
+# Use Python 3.10 as base image
+FROM python:3.10-slim
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies required for numpy and ML libraries
+# Install system dependencies required for TensorFlow and ML libraries
 RUN apt-get update && apt-get install -y \
     build-essential \
     python3-dev \
+    libhdf5-dev \
+    libblas-dev \
+    liblapack-dev \
+    gfortran \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first to leverage Docker cache
